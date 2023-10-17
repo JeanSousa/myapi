@@ -1,0 +1,8 @@
+npm i -D (dependencias de desenvolvimento)
+typescript 
+@types/node (tipagem do node)
+ts-node-dev (servidor para rodar a aplicação no ambiente de desenvolvimento)
+tsconfig-paths (paths da aplicação)
+
+npx tsc --help (traz as opções)
+npx tsc --init (cria o arquivo tsconfig)
