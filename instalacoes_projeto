@@ -6,3 +6,6 @@ tsconfig-paths (paths da aplicação)
 
 npx tsc --help (traz as opções)
 npx tsc --init (cria o arquivo tsconfig)
+
+
+npx tsc = vai compilar o codigo typescript em javascript no path dist
