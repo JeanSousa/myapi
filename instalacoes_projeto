@@ -4,8 +4,23 @@ typescript
 ts-node-dev (servidor para rodar a aplicação no ambiente de desenvolvimento)
 tsconfig-paths (paths da aplicação)
 
+# TSC Commandos
+
 npx tsc --help (traz as opções)
 npx tsc --init (cria o arquivo tsconfig)
-
-
 npx tsc = vai compilar o codigo typescript em javascript no path dist
+
+# Scripts 
+
+ts-node-dev -r tsconfig-paths/register = faz o ts node dev consiga interpretar subpaths que configuraremos no tsconfig
+--inspect  = habilita o debug
+--traspile-only = transpila o codigo ao invés de gerar a pasta dist
+--ignore-watch node_modules  = ignora ficar observando a node modules
+npm run dev = executa o commando
+
+"build": "rimraf dist && npx tsc", = rimraf vai apagar a pasta dist e compilar o typescript novamente
+
+
+# Biblioteca que apaga pasta dist atual e gera uma nova
+npm i rimraf  
+
