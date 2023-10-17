@@ -16,6 +16,8 @@ ts-node-dev -r tsconfig-paths/register = faz o ts node dev consiga interpretar s
 --inspect  = habilita o debug
 --traspile-only = transpila o codigo ao invés de gerar a pasta dist
 --ignore-watch node_modules  = ignora ficar observando a node modules
+src/shared/http/server.ts
+
 npm run dev = executa o commando
 
 "build": "rimraf dist && npx tsc", = rimraf vai apagar a pasta dist e compilar o typescript novamente
