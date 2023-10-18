@@ -40,3 +40,12 @@ npm i express express-async-errors( express-async-errors trata erros de requisi√
 
 # instalando a tipagem do express como dependencia de desenvolvimento
 npm i -D @types/express
+
+
+# INSTALANDO O CORS
+npm i cors
+
+# instalando pacote de tipagem do cors
+npm i -D @types/cors
+
+# BIBLIOTECA PARA VARIAVEL DE AMBIENTE
