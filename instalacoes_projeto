@@ -26,3 +26,11 @@ npm run dev = executa o commando
 # Biblioteca que apaga pasta dist atual e gera uma nova
 npm i rimraf  
 
+
+# PACOTES PARA ESLINT 
+
+npm i -D eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser prettier eslint-config-prettier eslint-plugin-prettier
+
+npx eslint . (valida os erros)
+
+npx eslint . --fix (concerta os erros)

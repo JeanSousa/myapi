@@ -1,8 +1,8 @@
-class AppServer {
-    // propriedade app tipada como string
-    private app: string 
+export class AppServer {
+  // propriedade app tipada como string
+  private app: string
 
-    constructor(info: string) {
-        this.app = info ?? 'Ola dev'
-    }
+  constructor(info: string) {
+    this.app = info ?? 'Ola dev'
+  }
 }
