@@ -1,8 +1,12 @@
 import express from 'express'
 import 'express-async-errors'
+import cors from 'cors'
 
 //criando instancia da aplicação
 const app = express()
+
+// Habilitando cors para aceitar conexao de qualquer origem
+app.use(cors())
 
 // informando para o express validar informações com formato json
 app.use(express.json())
