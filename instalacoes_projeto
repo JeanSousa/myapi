@@ -1,5 +1,5 @@
 npm i -D (dependencias de desenvolvimento)
-typescript 
+typescript
 @types/node (tipagem do node)
 ts-node-dev (servidor para rodar a aplicação no ambiente de desenvolvimento)
 tsconfig-paths (paths da aplicação)
@@ -10,7 +10,7 @@ npx tsc --help (traz as opções)
 npx tsc --init (cria o arquivo tsconfig)
 npx tsc = vai compilar o codigo typescript em javascript no path dist
 
-# Scripts 
+# Scripts
 
 ts-node-dev -r tsconfig-paths/register = faz o ts node dev consiga interpretar subpaths que configuraremos no tsconfig
 --inspect  = habilita o debug
@@ -24,13 +24,19 @@ npm run dev = executa o commando
 
 
 # Biblioteca que apaga pasta dist atual e gera uma nova
-npm i rimraf  
+npm i rimraf
 
 
-# PACOTES PARA ESLINT 
+# PACOTES PARA ESLINT
 
 npm i -D eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser prettier eslint-config-prettier eslint-plugin-prettier
 
 npx eslint . (valida os erros)
 
 npx eslint . --fix (concerta os erros)
+
+# INSTALANDO O EXPRESS PARA GERENCIAR A CRIAÇÃO DE ROTAS E MIDDLEWARES E TRATAMENTO DE REQUISIÇÕES
+npm i express express-async-errors( express-async-errors trata erros de requisições assincronas)
+
+# instalando a tipagem do express como dependencia de desenvolvimento
+npm i -D @types/express
