@@ -115,7 +115,7 @@
   },
   // incluir o diretorio src na compilação
   "include": ["src"],
-  // excluir tanto o diretorio dist na compilação pois ele já será o código compilado 
+  // excluir tanto o diretorio dist na compilação pois ele já será o código compilado
   // e a node_modules que são os pacotes
   "exclude": ["dist", "node_modules"]
 }
