@@ -5,6 +5,7 @@ import { Router } from 'express'
 const routes = Router()
 
 routes.get('/', (request, response) => {
+  throw new Error('Acesso Negado')
   return response.json({
     message: 'Ola Dev!',
   })
