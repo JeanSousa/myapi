@@ -2,6 +2,7 @@ import 'dotenv/config' //importacao da lib dotenv para utilizar variaveis de amb
 import express from 'express'
 import 'express-async-errors'
 import cors from 'cors'
+import { routes } from './routes'
 
 //criando instancia da aplicação
 const app = express()
@@ -12,11 +13,8 @@ app.use(cors())
 // informando para o express validar informações com formato json
 app.use(express.json())
 
-app.get('/', (request, response) => {
-  return response.json({
-    message: 'Ola Dev!',
-  })
-})
+// usando as rotas
+app.use(routes)
 
 // uso variavel de ambiente utilizando a variavel global 'process' . 'env' . 'nome variavel de ambiente'
 app.listen(process.env.PORT, () => {
