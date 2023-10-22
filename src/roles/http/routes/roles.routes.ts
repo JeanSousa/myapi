@@ -13,6 +13,16 @@ const rolesRepository = new RolesRepository()
 rolesRouter.post('/', (request, response) => {
   const { name } = request.body
 
+  //fazendo verificação se name existe
+  const roleAlreadyExists = rolesRepository.findByname(name)
+
+  if (roleAlreadyExists) {
+    // retorno 400 bad request
+    return response.status(400).json({
+      error: 'Role already Exists'
+    })
+  }
+
   // tenho que passar o name como objeto pois tenho o tipo objeto no createroleDTO
   const role = rolesRepository.create({ name })
 

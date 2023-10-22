@@ -37,4 +37,13 @@ export class RolesRepository {
   findAll(): Role[] {
     return this.roles
   }
+
+  // quando não encontrar entidade retornara undefined
+  findByname(name: string): Role | undefined {
+    // role (cada role) na arrow function verifico se o name de alguma role
+    // é igual ao name passado por parametro
+    // a arrow function sem as chaves retorna diretamente
+    // com as chaves tem que ter o retorno explicito
+    return this.roles.find(role => role.name === name)
+  }
 }
