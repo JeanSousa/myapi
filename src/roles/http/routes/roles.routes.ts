@@ -19,5 +19,13 @@ rolesRouter.post('/', (request, response) => {
   return response.status(201).json(role)
 })
 
+// rota GET http://localhost:3000/roles para listar
+rolesRouter.get('/', (request, response) => {
+  const roles = rolesRepository.findAll()
+
+  // o status code 200 é padrão
+  return response.json(roles)
+})
+
 
 export { rolesRouter }

@@ -16,7 +16,7 @@ export class RolesRepository {
 
   // metodo de criacao
   // desestruturo name do objeto CreateRoleDTO
-  create({ name }: CreateRoleDTO) {
+  create({ name }: CreateRoleDTO): Role {
       // ao criar a instancia a role já tem o id definido, pois foi definido no constructor da classe
       const role = new Role()
 
@@ -32,5 +32,9 @@ export class RolesRepository {
       this.roles.push(role)
 
       return role
+  }
+
+  findAll(): Role[] {
+    return this.roles
   }
 }
