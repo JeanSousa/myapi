@@ -1,14 +1,11 @@
 // tem que importar o route do express quando precisa criar rotas fora do arquivo que esta a
 // instancia do express atraves do router conseguimos criar
-import { RolesRepository } from '@roles/repositories/RoleRepository';
 import { createRoleController } from '@roles/useCases/createRole';
+import { listRolesController } from '@roles/useCases/listRoles';
 import { Router } from 'express';
 
 // rolesRouter recebe uma instancia de Router
 const rolesRouter = Router()
-
-const rolesRepository = new RolesRepository()
-
 
 rolesRouter.post('/', (request, response) => {
   // retorna o response do metodo handle da controller
@@ -19,10 +16,8 @@ rolesRouter.post('/', (request, response) => {
 
 // rota GET http://localhost:3000/roles para listar
 rolesRouter.get('/', (request, response) => {
-  const roles = rolesRepository.findAll()
-
-  // o status code 200 é padrão
-  return response.json(roles)
+  // o controller importado é uma instancia e não uma classe
+  return listRolesController.handle(request, response)
 })
 
 
