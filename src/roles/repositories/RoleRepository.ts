@@ -10,9 +10,27 @@ export class RolesRepository {
   // o tipo do array roles é um array da entidade Role
   private roles: Role[]
 
-  constructor() {
+  //criando o pattern singleton, um ponto unico de acesso
+  // static pois é um atributo de classe e não da instancia
+  private static INSTANCE: RolesRepository
+
+
+  // se o constructor for privado em nenhum lugar iremos conseguir
+  // instanciar a classe com "new RolesRepository()"
+  private constructor() {
     this.roles = []
   }
+
+  // esse método publico garante que a instancia seja unica
+  // é static pois é um atributo de classe e não de instancia da classe
+  public static getInstance(): RolesRepository {
+    // se não existe atribui uma instancia
+    if (!RolesRepository.INSTANCE) {
+      RolesRepository.INSTANCE = new RolesRepository()
+    }
+    return RolesRepository.INSTANCE
+  }
+
 
   // metodo de criacao
   // desestruturo name do objeto CreateRoleDTO
