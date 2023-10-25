@@ -1,9 +1,11 @@
 import 'dotenv/config' //importacao da lib dotenv para utilizar variaveis de ambiente
 import express, { NextFunction, Request, Response } from 'express'
 import 'express-async-errors'
+import swaggerUi from 'swagger-ui-express' //importando o swagger
 import cors from 'cors'
 import { routes } from './routes'
 import { AppError } from '@shared/errors/AppError'
+import swaggerFile from '../../swagger.json'
 
 //criando instancia da aplicação
 const app = express()
@@ -13,6 +15,9 @@ app.use(cors())
 
 // informando para o express validar informações com formato json
 app.use(express.json())
+
+// uso a rota /docs, para servir o swagger, passo o setup de configuração (arquivo json criado)
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 // usando as rotas
 app.use(routes)
