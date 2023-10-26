@@ -1,4 +1,6 @@
 import 'dotenv/config' //importacao da lib dotenv para utilizar variaveis de ambiente
+// Importando reflect metadata para estar apto a criar o arquivo de instancia do banco de dados sqlite usando typeorm
+import 'reflect-metadata'
 import express, { NextFunction, Request, Response } from 'express'
 import 'express-async-errors'
 import swaggerUi from 'swagger-ui-express' //importando o swagger
