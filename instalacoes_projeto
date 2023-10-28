@@ -58,3 +58,11 @@ npm i -D @types/swagger-ui-express
 
 # INSTALANDO O TYPE ORM (REFLECT É OBRIGATORIO PARA O TYPEORM) E O SQLITE (PARA A ESTRUTURA DO NODE ENTENDER O SQLITE)
 npm install typeorm reflect-metadata sqlite3
+
+
+# CRIANDO MIGRATIONS
+➜  npm run typeorm migration:create src/shared/typeorm/migrations/CreateRolesTable
+
+# RODANDO MIGRATION O -D = DATASOURCE PASSO O CAMINHO
+
+➜  npm run typeorm -- -d ./src/shared/typeorm/index.ts migration:run
