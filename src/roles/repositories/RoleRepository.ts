@@ -1,14 +1,34 @@
 import { Role } from "@roles/entities/Role"
 
+// crio o repository através de uma entidade utilizando uma instancia do datasource
+// a entidade representa a tabela no banco de dados
+import { dataSource } from "@shared/typeorm"
+import { Repository } from "typeorm"
+
 // é o data transfrer object
 // ele tipa o tipo de informação que deve receber no metodo create para que uma role seja criada
 type CreateRoleDTO = {
   name: string
 }
 
+// definindo um type para paginate params
+export type PaginateParams = {
+  page: number,
+  skip: number, //numero de registros que quero pular
+  take: number // quantos registros quero pegar depois que pulei um numero
+}
+
+// definindo um type para informações retornadas
+export type RolesPaginateProperties = {
+  per_page: number,
+  total: number,
+  current_page: number,
+  data: Role[] // dados retorna um array de roles
+}
+
 export class RolesRepository {
-  // o tipo do array roles é um array da entidade Role
-  private roles: Role[]
+  // o tipo vai ser repository do type orm, que pelo generic '<>' digo qual informação ele lida que é a entidade Role
+  private repository: Repository<Role>
 
   //criando o pattern singleton, um ponto unico de acesso
   // static pois é um atributo de classe e não da instancia
@@ -18,7 +38,8 @@ export class RolesRepository {
   // se o constructor for privado em nenhum lugar iremos conseguir
   // instanciar a classe com "new RolesRepository()"
   private constructor() {
-    this.roles = []
+    // crio o repository através de uma entidade Role utilizando uma instancia do datasource
+    this.repository = dataSource.getRepository(Role)
   }
 
   // esse método publico garante que a instancia seja unica
@@ -34,34 +55,63 @@ export class RolesRepository {
 
   // metodo de criacao
   // desestruturo name do objeto CreateRoleDTO
-  create({ name }: CreateRoleDTO): Role {
-      // ao criar a instancia a role já tem o id definido, pois foi definido no constructor da classe
-      const role = new Role()
-
-      // aqui faço o merge do objeto role instanciado com o restante das informações name e created
-      // o metodo object assign faz isso, e o primeiro parametro é o objeto target (alvo)
-      // o segundo são as informações que serão assinadas nesse objeto
-      Object.assign(role, {
-        name,
-        created_at: new Date(),
-      })
-
-      // atribuindo ao array roles
-      this.roles.push(role)
-
-      return role
+  // metodo asincrono como pode demorar
+  // retorna uma promisse da entidade role
+  async create({ name }: CreateRoleDTO): Promise<Role> {
+      // o metodo create é do proprio type orm
+      const role = this.repository.create({ name })
+      // metodo save do typeorm salva no banco de dados
+      return this.repository.save(role)
   }
 
-  findAll(): Role[] {
-    return this.roles
+  // metodo para atualizar uma informação
+  async save(role: Role): Promise<Role> {
+    // estou atualizando o role com os dados atualizados que recebo no parametro
+    return this.repository.save(role)
   }
 
-  // quando não encontrar entidade retornara undefined
-  findByname(name: string): Role | undefined {
-    // role (cada role) na arrow function verifico se o name de alguma role
-    // é igual ao name passado por parametro
-    // a arrow function sem as chaves retorna diretamente
-    // com as chaves tem que ter o retorno explicito
-    return this.roles.find(role => role.name === name)
+  // o retorno é uma promessa de void (não retorna nada porque o dado esta sendo apagado)
+  async delete(role: Role): Promise<void> {
+    // executo apenas await porque não precisa de retorno porque é void
+    // o remove recebe a entidade completa, se fosse delete receberia apenas o id
+    await this.repository.remove(role)
+  }
+
+  // desestruturo os parametros do type PaginateParams criados
+  async findAll({
+    page,
+    skip,
+    take
+  }: PaginateParams): Promise<RolesPaginateProperties> {
+    // roles e count esta desestruturando nesse array o resultado de getManyAndCount da query feita com query builder
+    const [roles, count] = await this.repository.createQueryBuilder()
+      .skip(skip)
+      .take(take)
+      .getManyAndCount()
+
+    // esse result é exatamente do type RolesPaginateProperties
+    const result = {
+      per_page: take, // enviado como parametro
+      total: count, // count retornado da query builder
+      current_page: page, //enviado como parametro
+      data: roles // retornado da query builder
+    }
+
+    return result
+  }
+
+  // quando não encontrar entidade o typeorm retornara null
+  async findByname(name: string): Promise<Role | null> {
+    // o name é igual o nome do parametro então passo { name } no where do metodo findOneBy (SHORT SINTAX)
+    // se o parametro fosse xpto passaria assim {name : xpto} ou seja where name é igual o valor do parametro xpto
+    return this.repository.findOneBy({ name }) // não precisa do await quando coloca o return
+  }
+
+  async findById(id: string): Promise<Role | null> {
+    // o id é igual o nome do parametro então passo { id } no where do metodo findOneBy (SHORT SINTAX)
+    // se o parametro fosse xpto passaria assim {id : xpto} ou seja where name é igual o valor do parametro xpto
+    return this.repository.findOneBy({ id }) // não precisa do await quando coloca o return
   }
 }
+
+
