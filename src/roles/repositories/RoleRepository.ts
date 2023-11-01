@@ -39,6 +39,7 @@ export class RolesRepository {
   // instanciar a classe com "new RolesRepository()"
   private constructor() {
     // crio o repository através de uma entidade Role utilizando uma instancia do datasource
+    // o metodo getRepository do datasource retorna o tipo Repository do typeorm
     this.repository = dataSource.getRepository(Role)
   }
 
@@ -47,6 +48,9 @@ export class RolesRepository {
   public static getInstance(): RolesRepository {
     // se não existe atribui uma instancia
     if (!RolesRepository.INSTANCE) {
+      // aqui quando tem uma nova instancia passa pelo construtor e this.repository recebe
+      // uma instancia do metodo getRepository do data source atribuindo uma entidade Role a
+      // essa repository
       RolesRepository.INSTANCE = new RolesRepository()
     }
     return RolesRepository.INSTANCE
@@ -59,7 +63,7 @@ export class RolesRepository {
   // retorna uma promisse da entidade role
   async create({ name }: CreateRoleDTO): Promise<Role> {
       // o metodo create é do proprio type orm
-      const role = this.repository.create({ name })
+      const role = this.repository.create({ name }) // esse name é uma short sintax
       // metodo save do typeorm salva no banco de dados
       return this.repository.save(role)
   }
@@ -87,7 +91,7 @@ export class RolesRepository {
     const [roles, count] = await this.repository.createQueryBuilder()
       .skip(skip)
       .take(take)
-      .getManyAndCount()
+      .getManyAndCount() // esse get many retorna roles e um count
 
     // esse result é exatamente do type RolesPaginateProperties
     const result = {
