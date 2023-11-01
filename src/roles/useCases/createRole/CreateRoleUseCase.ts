@@ -14,9 +14,9 @@ export class CreateRoleUseCase {
 
   // quando se executa a criacao de uma role eu defino o tipo createroleDTO como parametro
   // recebo suas propriedades desestruturando name
-  execute({name}: CreateRoleDTO): Role {
+  async execute({name}: CreateRoleDTO): Promise<Role> {
     // chamo role repository com this pois é um atributo da classe
-    const roleAlreadyExists = this.roleRepository.findByname(name)
+    const roleAlreadyExists = await this.roleRepository.findByname(name)
 
     if (roleAlreadyExists) {
       // retorno 400 bad request como padrao nesse throw

@@ -9,10 +9,10 @@ export class CreateRoleController {
   // obs: onde temos o Router importado ja temos os tipos de request e response conhecidos e etribuidos automaticamente
   // ou seja são tipos do express e ja tem a instancia do router, nesse caso especifico devo tipar com o Request e Response do express
   // importando a tipagem do express
-  handle(request: Request, response: Response): Response {
+  async handle(request: Request, response: Response): Promise<Response> {
     const { name } = request.body
 
-    const role = this.createRoleUseCase.execute({ name })
+    const role = await this.createRoleUseCase.execute({ name })
 
     return response.status(201).json(role)
   }
