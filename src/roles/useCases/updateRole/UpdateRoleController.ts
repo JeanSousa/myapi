@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { UpdateRoleUseCase } from "./UpdateRoleUseCase";
 
 export class UpdateRoleController {
-  // atributo privado do construtor é um show role use case
+  // atributo privado do construtor é um update role use case
   constructor(private updateRoleUseCase: UpdateRoleUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {

@@ -11,6 +11,6 @@ const rolesRepository = RolesRepository.getInstance()
 // ele preserva os dados (caso seja de um array), pois se criasse uma cada post sempre teria so um item
 const createRoleUseCase = new CreateRoleUseCase(rolesRepository)
 // instancia do create role controller precisa da create role use case como parametro
-export const createRoleController= new CreateRoleController(createRoleUseCase)
+export const createRolesController= new CreateRoleController(createRoleUseCase)
 
 
