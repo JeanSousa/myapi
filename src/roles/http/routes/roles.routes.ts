@@ -2,6 +2,7 @@
 // instancia do express atraves do router conseguimos criar
 import { createRoleController } from '@roles/useCases/createRole';
 import { listRolesController } from '@roles/useCases/listRoles';
+import { showRoleController } from '@roles/useCases/showRole'; // nao especifico o arquivo pois esta no index
 import { Router } from 'express';
 
 // rolesRouter recebe uma instancia de Router
@@ -18,6 +19,12 @@ rolesRouter.post('/', (request, response) => {
 rolesRouter.get('/', (request, response) => {
   // o controller importado é uma instancia e não uma classe
   return listRolesController.handle(request, response)
+})
+
+// rota GET http://localhost:3000/roles/<id do role> para exibir apenas uma role
+rolesRouter.get('/:id', (request, response) => {
+  // o controller importado é uma instancia e não uma classe
+  return showRoleController.handle(request, response)
 })
 
 
