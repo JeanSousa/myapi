@@ -3,9 +3,11 @@ import express, { NextFunction, Request, Response } from 'express'
 import 'express-async-errors'
 import swaggerUi from 'swagger-ui-express' //importando o swagger
 import cors from 'cors'
+import { errors } from 'celebrate' //importando o middleware que o celebrate disponibiliza quando detecta erros executado logo apos a execução das rotas
 import { routes } from './routes'
 import { AppError } from '@shared/errors/AppError'
 import swaggerFile from '../../swagger.json'
+
 
 //criando instancia da aplicação
 const app = express()
@@ -21,6 +23,9 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 // usando as rotas
 app.use(routes)
+
+// executando o middleware de erros de validação do celebrate que interrompe caso tenha erros nas validações
+app.use(errors())
 
 // criação de um middleware de error que captura o error depois da chamada da rota
 app.use(

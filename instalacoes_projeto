@@ -66,3 +66,11 @@ npm install typeorm reflect-metadata sqlite3
 # RODANDO MIGRATION O -D = DATASOURCE PASSO O CAMINHO
 
 ➜  npm run typeorm -- -d ./src/shared/typeorm/index.ts migration:run
+
+
+# INSTALANDO CELEBRATE PARA VALIDAR REQUISICOES DO CLIENT
+
+npm i celebrate
+
+# tipagem do joi que o celebrate utiliza
+npm i -D @types/joi
