@@ -14,7 +14,7 @@
       "post": {
         "tags": ["Roles"],
         "summary": "Create a role",
-        "description": "Create a new role.",
+        "description": "Create a new role",
         "requestBody": {
           "content": {
             "application/json": {
@@ -31,11 +31,11 @@
         },
         "responses": {
           "201": {
-            "description": "Role Created.",
+            "description": "Role created.",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
+                  "type":"object",
                   "properties": {
                     "id": {
                       "type":"string"
@@ -66,8 +66,8 @@
             "in": "query",
             "description": "Number of the page",
             "required": false,
-            "schema": {
-              "type": "number",
+            "schema":{
+              "type":"number",
               "example": "page=1"
             },
             "style": "label"
@@ -77,8 +77,8 @@
             "in": "query",
             "description": "Number of registers per page",
             "required": false,
-            "schema": {
-              "type": "number",
+            "schema":{
+              "type":"number",
               "example": "limit=15"
             },
             "style": "label"
@@ -87,22 +87,22 @@
         "responses": {
           "200": {
             "description": "Success.",
-            "content": {
-              "application/json": {
+            "content":{
+              "application/json":{
                 "example": {
                   "per_page": 15,
                   "total": 2,
                   "current_page": 1,
                   "data": [
                     {
-                      "id": "de0c7129-8e02-4ca6-b025-c7f3572cd3ac",
+                      "id": "debf66eb-d940-439e-aa82-137d9b8f21a6",
                       "name": "Users",
-                      "created_at": "2023-11-04T17:51:27.000Z"
+                      "created_at": "2022-07-16T14:10:28.000Z"
                     },
                     {
-                      "id": "fabf0262-194e-4ad4-bb07-4aae047eaf95",
+                      "id": "74c8f2c7-5d9d-4c80-872c-c4f619fe6e78",
                       "name": "Admin",
-                      "created_at": "2023-11-04T17:51:32.000Z"
+                      "created_at": "2022-07-16T14:10:48.000Z"
                     }
                   ]
                 }
@@ -110,7 +110,6 @@
             }
           }
         }
-
       }
     },
     "/roles/{id}": {
@@ -165,9 +164,9 @@
                   }
                 },
                 "example": {
-                  "id": "fabf0262-194e-4ad4-bb07-4aae047eaf95",
+                  "id": "74c8f2c7-5d9d-4c80-872c-c4f619fe6e78",
                   "name": "Administrator",
-                  "created_at": "2023-11-04T17:51:32.000Z"
+                  "created_at": "2022-07-16T14:10:48.000Z"
                 }
               }
             }
@@ -182,7 +181,7 @@
       },
       "get": {
         "tags": ["Roles"],
-        "summary": "Find role by id",
+        "summary": "Find role by ID",
         "description": "Returns roles based on ID.",
         "parameters": [
           {
@@ -216,9 +215,9 @@
                   }
                 },
                 "example": {
-                  "id": "fabf0262-194e-4ad4-bb07-4aae047eaf95",
+                  "id": "74c8f2c7-5d9d-4c80-872c-c4f619fe6e78",
                   "name": "Administrator",
-                  "created_at": "2023-11-04T17:51:32.000Z"
+                  "created_at": "2022-07-16T14:10:48.000Z"
                 }
               }
             }
@@ -233,7 +232,7 @@
       },
       "delete": {
         "tags": ["Roles"],
-        "summary": "Delete role by id",
+        "summary": "Delete role by ID",
         "description": "Delete roles based on ID.",
         "parameters": [
           {

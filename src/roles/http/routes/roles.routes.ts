@@ -1,3 +1,6 @@
+import { Router } from 'express';
+// importando do celebrate os recursos utilizados para fazer validação
+import { celebrate, Joi, Segments } from 'celebrate';
 // tem que importar o route do express quando precisa criar rotas fora do arquivo que esta a
 // instancia do express atraves do router conseguimos criar
 import { createRolesController } from '@roles/useCases/createRole';
@@ -5,9 +8,6 @@ import { deleteRolesController } from '@roles/useCases/deleteRole';
 import { listRolesController } from '@roles/useCases/listRoles';
 import { showRolesController } from '@roles/useCases/showRole'; // nao especifico o arquivo pois esta no index
 import { updateRolesController } from '@roles/useCases/updateRole';
-import { Router } from 'express';
-// importando do celebrate os recursos utilizados para fazer validação
-import { celebrate, Joi, Segments } from 'celebrate';
 
 // rolesRouter recebe uma instancia de Router
 const rolesRouter = Router()
