@@ -74,3 +74,8 @@ npm i celebrate
 
 # tipagem do joi que o celebrate utiliza
 npm i -D @types/joi
+
+
+# INSTALANDO TSYRING
+# para que os repositories sejam injetado nos use cases como dependencia
+npm i tsyringe

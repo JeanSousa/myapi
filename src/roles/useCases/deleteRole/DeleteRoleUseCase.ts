@@ -1,6 +1,3 @@
-// definindo o DTO
-
-import { Role } from "@roles/entities/Role"
 import { RolesRepository } from "@roles/repositories/RoleRepository"
 import { AppError } from "@shared/errors/AppError"
 

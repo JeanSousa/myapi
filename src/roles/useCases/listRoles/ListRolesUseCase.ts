@@ -1,4 +1,5 @@
-import { RolesPaginateProperties, RolesRepository } from "@roles/repositories/RoleRepository";
+import { RolesPaginateProperties } from "@roles/repositories/IRoleRepository";
+import { RolesRepository } from "@roles/repositories/RoleRepository";
 
 // tipando uma entrada para o metodo execute do use case
 type ListRolesUseCaseParams = {

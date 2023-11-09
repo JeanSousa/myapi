@@ -26,7 +26,7 @@ export class UpdateRoleUseCase {
     }
 
     // Regra de negocio, não armazenar um nome de role que já esteja em uso
-    const roleWithSameName = await this.roleRepository.findByname(name)
+    const roleWithSameName = await this.roleRepository.findByName(name)
 
     // se existir um role com esse name em uso && for diferente do name do role atual buscado pelo id
     if (roleWithSameName && role.name !== roleWithSameName.name) {

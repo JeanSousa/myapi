@@ -7,6 +7,8 @@ import { errors } from 'celebrate' //importando o middleware que o celebrate dis
 import { routes } from './routes'
 import { AppError } from '@shared/errors/AppError'
 import swaggerFile from '../../swagger.json'
+// importação do container para trabalhar com injeção de dependencias
+import '@shared/container'
 
 
 //criando instancia da aplicação

@@ -4,58 +4,20 @@ import { Role } from "@roles/entities/Role"
 // a entidade representa a tabela no banco de dados
 import { dataSource } from "@shared/typeorm"
 import { Repository } from "typeorm"
+import { CreateRoleDTO, IRolesRepository, PaginateParams, RolesPaginateProperties } from "./IRoleRepository"
 
-// é o data transfrer object
-// ele tipa o tipo de informação que deve receber no metodo create para que uma role seja criada
-type CreateRoleDTO = {
-  name: string
-}
-
-// definindo um type para paginate params
-export type PaginateParams = {
-  page: number,
-  skip: number, //numero de registros que quero pular
-  take: number // quantos registros quero pegar depois que pulei um numero
-}
-
-// definindo um type para informações retornadas
-export type RolesPaginateProperties = {
-  per_page: number,
-  total: number,
-  current_page: number,
-  data: Role[] // dados retorna um array de roles
-}
-
-export class RolesRepository {
-  // o tipo vai ser repository do type orm, que pelo generic '<>' digo qual informação ele lida que é a entidade Role
+export class RolesRepository implements IRolesRepository {
+  // o tipo do repositório vai ser Repository do type orm, que pelo generic '<>' digo qual informação ele lida que é a entidade Role
+  // AQUI É A TIPAGEM (PODE VER QUE A getRepository RETORNA UM Repository da entidade ROLE)
   private repository: Repository<Role>
 
-  //criando o pattern singleton, um ponto unico de acesso
-  // static pois é um atributo de classe e não da instancia
-  private static INSTANCE: RolesRepository
-
-
-  // se o constructor for privado em nenhum lugar iremos conseguir
-  // instanciar a classe com "new RolesRepository()"
-  private constructor() {
+  constructor() {
     // crio o repository através de uma entidade Role utilizando uma instancia do datasource
     // o metodo getRepository do datasource retorna o tipo Repository do typeorm
+    // AQUI É A ATRIBUIÇÃO
+    // ESTOU ATRIBUINDO AO REPOSITORIO QUE ELE PERTENCE A ENTIDADE ROLE (COMO SE FOSSE UMA MODEL DO LARAVEL)
     this.repository = dataSource.getRepository(Role)
   }
-
-  // esse método publico garante que a instancia seja unica
-  // é static pois é um atributo de classe e não de instancia da classe
-  public static getInstance(): RolesRepository {
-    // se não existe atribui uma instancia
-    if (!RolesRepository.INSTANCE) {
-      // aqui quando tem uma nova instancia passa pelo construtor e this.repository recebe
-      // uma instancia do metodo getRepository do data source atribuindo uma entidade Role a
-      // essa repository
-      RolesRepository.INSTANCE = new RolesRepository()
-    }
-    return RolesRepository.INSTANCE
-  }
-
 
   // metodo de criacao
   // desestruturo name do objeto CreateRoleDTO
@@ -105,7 +67,7 @@ export class RolesRepository {
   }
 
   // quando não encontrar entidade o typeorm retornara null
-  async findByname(name: string): Promise<Role | null> {
+  async findByName(name: string): Promise<Role | null> {
     // o name é igual o nome do parametro então passo { name } no where do metodo findOneBy (SHORT SINTAX)
     // se o parametro fosse xpto passaria assim {name : xpto} ou seja where name é igual o valor do parametro xpto
     return this.repository.findOneBy({ name }) // não precisa do await quando coloca o return
