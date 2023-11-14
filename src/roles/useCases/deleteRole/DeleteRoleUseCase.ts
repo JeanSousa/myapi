@@ -1,5 +1,6 @@
-import { RolesRepository } from "@roles/repositories/RoleRepository"
+import { IRolesRepository } from "@roles/repositories/IRoleRepository"
 import { AppError } from "@shared/errors/AppError"
+import { inject, injectable } from "tsyringe"
 
 // que define o tipo das propriedades para o delte
 // semanticamente fica melhor params do que DTO pois não estamos criando nada
@@ -7,8 +8,12 @@ type DeleteRoleParams = {
   id: string
 }
 
+@injectable()
 export class DeleteRoleUseCase {
-  constructor(private roleRepository: RolesRepository) {}
+  constructor(
+    @inject('RolesRepository')
+    private roleRepository: IRolesRepository // como é apenas a tipagem uso a interface e não a implementação
+  ) {}
 
   // quando se executa o delete de uma role eu defino o tipo DeleteRoleParams como parametro
   // recebo suas propriedades desestruturando ID

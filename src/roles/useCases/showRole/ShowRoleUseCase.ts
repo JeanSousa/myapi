@@ -1,8 +1,9 @@
 // definindo o DTO
 
 import { Role } from "@roles/entities/Role"
-import { RolesRepository } from "@roles/repositories/RoleRepository"
+import { IRolesRepository } from "@roles/repositories/IRoleRepository"
 import { AppError } from "@shared/errors/AppError"
+import { inject, injectable } from "tsyringe"
 
 // que define o tipo das propriedades para o show
 // semanticamente fica melhor params do que DTO pois não estamos criando nada
@@ -10,8 +11,12 @@ type ShowRoleParams = {
   id: string
 }
 
+@injectable()
 export class ShowRoleUseCase {
-  constructor(private roleRepository: RolesRepository) {}
+  constructor(
+    @inject('RolesRepository')
+    private roleRepository: IRolesRepository
+  ) {}
 
   // quando se executa o show de uma role eu defino o tipo showRoleDTO como parametro
   // recebo suas propriedades desestruturando ID

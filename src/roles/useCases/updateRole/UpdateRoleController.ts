@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { UpdateRoleUseCase } from "./UpdateRoleUseCase";
+import { container } from "tsyringe";
 
 export class UpdateRoleController {
-  // atributo privado do construtor é um update role use case
-  constructor(private updateRoleUseCase: UpdateRoleUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
+    const updateRoleUseCase = container.resolve(UpdateRoleUseCase)
     // o id vai vir de request params, route param
     // desestruturo id do params para fazer a atualização
     const { id } = request.params
@@ -14,7 +14,7 @@ export class UpdateRoleController {
     const { name } =  request.body
 
     // envio id e name para fazer o update
-    const role = await this.updateRoleUseCase.execute({ id, name })
+    const role = await updateRoleUseCase.execute({ id, name })
 
     return response.status(200).json(role)
   }

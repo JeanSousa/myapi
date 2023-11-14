@@ -1,9 +1,9 @@
-// definindo o DTO
-
 import { Role } from "@roles/entities/Role"
-import { RolesRepository } from "@roles/repositories/RoleRepository"
+import { IRolesRepository } from "@roles/repositories/IRoleRepository"
 import { AppError } from "@shared/errors/AppError"
+import { inject, injectable } from "tsyringe"
 
+// definindo o DTO
 // DTO pois recebemos do client os dados que iremos armazenar
 // aqui faço a tipagem dos parametros
 type UpdateRoleDTO = {
@@ -11,8 +11,12 @@ type UpdateRoleDTO = {
   name: string
 }
 
+@injectable()
 export class UpdateRoleUseCase {
-  constructor(private roleRepository: RolesRepository) {}
+  constructor(
+    @inject('RolesRepository')
+    private roleRepository: IRolesRepository
+  ) {}
 
   // quando se executa o update de uma role eu defino o tipo UpdateRoleDTO como parametro
   // recebo suas propriedades desestruturando id e name

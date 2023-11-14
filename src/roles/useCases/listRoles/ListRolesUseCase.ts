@@ -1,5 +1,5 @@
-import { RolesPaginateProperties } from "@roles/repositories/IRoleRepository";
-import { RolesRepository } from "@roles/repositories/RoleRepository";
+import { IRolesRepository, RolesPaginateProperties } from "@roles/repositories/IRoleRepository";
+import { inject, injectable } from "tsyringe";
 
 // tipando uma entrada para o metodo execute do use case
 type ListRolesUseCaseParams = {
@@ -7,8 +7,12 @@ type ListRolesUseCaseParams = {
   limit: number
 }
 
+@injectable()
 export class ListRolesUseCase {
-  constructor(private rolesRepository: RolesRepository){}
+  constructor(
+    @inject('RolesRepository')
+    private rolesRepository: IRolesRepository
+  ){}
 
   // metodo execute retorna um array de Role
   async execute({ limit, page }: ListRolesUseCaseParams): Promise<RolesPaginateProperties> {
