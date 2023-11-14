@@ -1,16 +1,28 @@
+// tem que importar o route do express quando precisa criar rotas fora do arquivo que esta a
+// instancia do express atraves do router conseguimos criar
 import { Router } from 'express';
 // importando do celebrate os recursos utilizados para fazer validação
 import { celebrate, Joi, Segments } from 'celebrate';
-// tem que importar o route do express quando precisa criar rotas fora do arquivo que esta a
-// instancia do express atraves do router conseguimos criar
-import { createRolesController } from '@roles/useCases/createRole';
-import { deleteRolesController } from '@roles/useCases/deleteRole';
-import { listRolesController } from '@roles/useCases/listRoles';
-import { showRolesController } from '@roles/useCases/showRole'; // nao especifico o arquivo pois esta no index
-import { updateRolesController } from '@roles/useCases/updateRole';
+import { container } from 'tsyringe';
+import { CreateRoleController } from '@roles/useCases/createRole/CreateRoleController';
+import { ListRolesController } from '@roles/useCases/listRoles/ListRolesController';
+import { ShowRoleController } from '@roles/useCases/showRole/ShowRoleController';
+import { UpdateRoleController } from '@roles/useCases/updateRole/UpdateRoleController';
+import { DeleteRoleController } from '@roles/useCases/deleteRole/DeleteRoleController';
+
 
 // rolesRouter recebe uma instancia de Router
 const rolesRouter = Router()
+
+// assim não preciso instanciar os controller, o container do tsyringe
+// vai fazer o controle das instancias dos controllers, inclusive usando o padrão de projeto singleton
+// que cria uma única instancia na aplicação a cada ciclo da aplicação
+const createRolesController = container.resolve(CreateRoleController)
+const listRolesController = container.resolve(ListRolesController)
+const showRolesController = container.resolve(ShowRoleController)
+const updateRolesController = container.resolve(UpdateRoleController)
+const deleteRolesController = container.resolve(DeleteRoleController)
+
 
 rolesRouter.post('/', celebrate({ // uso celebrata para validar, se a validação não estiver correta não é chamado o controller, ele funciona como middleware
     [Segments.BODY]: Joi.object().keys({
