@@ -15,7 +15,7 @@ export class RolesRepository implements IRolesRepository {
     // crio o repository através de uma entidade Role utilizando uma instancia do datasource
     // o metodo getRepository do datasource retorna o tipo Repository do typeorm
     // AQUI É A ATRIBUIÇÃO
-    // ESTOU ATRIBUINDO AO REPOSITORIO QUE ELE PERTENCE A ENTIDADE ROLE (COMO SE FOSSE UMA MODEL DO LARAVEL)
+    // ESTOU ATRIBUINDO AO REPOSITORIO QUE ELE PERTENCE A ENTIDADE ROLE (COMO SE FOSSE UMA REPOSITORY DO LARAVEL QUE PERTENCE A UMA MODEL)
     this.repository = dataSource.getRepository(Role)
   }
 

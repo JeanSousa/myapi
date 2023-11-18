@@ -4,6 +4,7 @@ import { CreateRolesTable1698455439958 } from "./migrations/1698455439958-Create
 import { CreateUsersTable1700324058467 } from "./migrations/1700324058467-CreateUsersTable"
 import { Role } from "@roles/entities/Role"
 import { AddRoleIdToUsersTable1700325025264 } from "./migrations/1700325025264-AddRoleIdToUsersTable"
+import { User } from "@users/entities/User"
 
 // vou chamar essa função no arquivo principal server.ts para se conectar no banco quando a aplicação subir
 const dataSource = new DataSource({
@@ -11,7 +12,7 @@ const dataSource = new DataSource({
     type: "sqlite",
     database: "./db.sqlite", //vai criar o arquivo na raiz do projeto
     // informando as entidades que vou trabalhar
-    entities: [Role],
+    entities: [Role, User],
     migrations: [ // nas migrations tenho as classes das migrations criadas
       CreateRolesTable1698455439958,
       CreateUsersTable1700324058467,
