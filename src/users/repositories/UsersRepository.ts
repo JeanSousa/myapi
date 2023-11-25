@@ -37,8 +37,8 @@ export class UsersRepository implements IUsersRepository {
   async findAll({ page, skip, take }: PaginateParams): Promise<UsersPaginateProperties> {
     // users e count esta desestruturando nesse array o resultado de getManyAndCount da query feita com query builder
     const [users, count] = await this.repository
-      .createQueryBuilder('r')
-      .leftJoinAndSelect('r.role', 'role') // r.role vem apelidado como role
+      .createQueryBuilder('r') // r = alias para user
+      .leftJoinAndSelect('r.role', 'role') //  (r.role é a propriedade role da entidade User e o 'role' é um alias para essa entidade, podendo acessar assim users[0].role.propriedadeDaRole)
       .skip(skip)
       .take(take)
       .getManyAndCount()
