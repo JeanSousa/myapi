@@ -79,3 +79,9 @@ npm i -D @types/joi
 # INSTALANDO TSYRING
 # para que os repositories sejam injetado nos use cases como dependencia
 npm i tsyringe
+
+
+# INSTALANDO BCRYPT E TIPAGEM
+npm i bcryptjs
+
+npm i -D @types/bcryptjs
