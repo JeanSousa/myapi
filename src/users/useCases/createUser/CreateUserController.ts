@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 import { CreateUserUseCase } from "./CreateUserUseCase";
+import { instanceToInstance } from "class-transformer";
 
 export class CreateUserController {
     async handle(request: Request, response: Response): Promise<Response> {
@@ -19,6 +20,7 @@ export class CreateUserController {
         })
 
         // status 201 de criacao passando um json do usuario
-        return response.status(201).json(user)
+        // Intance to instance é um metodo do class transformer que obedece o exclude do campo decorado com @exclude na entidade
+        return response.status(201).json(instanceToInstance(user))
     }
 }

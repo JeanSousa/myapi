@@ -85,3 +85,6 @@ npm i tsyringe
 npm i bcryptjs
 
 npm i -D @types/bcryptjs
+
+# INSTALAÇÃO LIB CLASS TRANSFORMER
+# para não enviar senhas no response de uma requisição para listar usuarios
