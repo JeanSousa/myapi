@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe"
 import { compare } from "bcryptjs"
-import { jwtConfig } from "@config/auth"
+import jwtConfig from "@config/auth"
 import { AppError } from "@shared/errors/AppError"
 import { User } from "@users/entities/User"
 import { IUsersRepository } from "@users/repositories/IUsersRepository"
@@ -48,10 +48,10 @@ export class CreateLoginUseCase {
         // tambem uso o expires in mostrando quando o token ira expirar
         const token = sign(
             {},
-            jwtConfig.secret,
+            jwtConfig.jwt.secret,
             { 
                 subject: user.id,
-                expiresIn: jwtConfig.expiresIn,
+                expiresIn: jwtConfig.jwt.expiresIn,
             } 
         )
 
