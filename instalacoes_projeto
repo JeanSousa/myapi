@@ -88,3 +88,9 @@ npm i -D @types/bcryptjs
 
 # INSTALAÇÃO LIB CLASS TRANSFORMER
 # para não enviar senhas no response de uma requisição para listar usuarios
+npm i class-transformer
+
+# INSTALAÇÃO LIB PARA TRABALHAR COM JWT
+npm install jsonwebtoken
+# intalando tipagem para trabalhar com typescript nessa biblioteca
+
