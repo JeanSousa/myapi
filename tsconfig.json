@@ -32,6 +32,7 @@
     // AQUI CONFIGURO O SUBPATH IMPORTS, COLOCO UM ALIAS PARA AS IMPORTAÇÕES QUE BUSCARA O REAL CAMINHO AQUI, A PARTIR DO BASER URL COLOCO COMO CHEGO NO DIRETORIO
     // IMPORTO OS ARQUIVOS SEMPRE DE UM PONTO RAIZ QUE É O BASE URL
     "paths": {
+      "@config/*": ["src/config/*"],
       // a partir de @roles / * qualquer coisa que tiver esse valor vai substituir por src/roles/*(qualquer coisa)
       "@roles/*": ["src/roles/*"],
       "@shared/*": ["src/shared/*"],
