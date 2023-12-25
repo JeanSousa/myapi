@@ -93,4 +93,4 @@ npm i class-transformer
 # INSTALAÇÃO LIB PARA TRABALHAR COM JWT
 npm install jsonwebtoken
 # intalando tipagem para trabalhar com typescript nessa biblioteca
-
+npm install -d @types/jsonwebtoken
